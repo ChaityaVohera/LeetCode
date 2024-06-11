@@ -4,12 +4,21 @@ class Solution {
         if(s.length()!= t.length())
             return false;
         
-        char[] sArray = s.toCharArray();
-        char[] tArray = t.toCharArray();
+        int[] count = new int[26];
         
-        Arrays.sort(sArray);
-        Arrays.sort(tArray);
+        for(int i=0 ; i<s.length() ; i++){
+            count[s.charAt(i) - 'a']++;
+        }
         
-        return Arrays.equals(sArray, tArray);
+         for(int i=0 ; i<t.length() ; i++){
+            count[t.charAt(i) - 'a']--;
+        }
+        
+        for(int i=0 ; i<count.length ; i++){
+            if(count[i] != 0){
+                return false;
+            }
+        }
+        return true;
     }
-}
+}   
